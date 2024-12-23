@@ -1,0 +1,27 @@
+{
+  "name": "@corca-ai/data-core",
+  "version": "0.1.1",
+  "author": "Corca <contact@corca.ai>",
+  "description": "",
+  "main": "dist/index.js",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "lodash": "^4.17.21"
+  },
+  "scripts": {
+    "prebuild": "node -p \"'export const PACKAGE_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
+    "start:dev": "vite build --watch",
+    "build": "vite build",
+    "prepare": "pnpm build",
+    "openapi": "pnpm openapi-typescript https://receiver.corca.dev/api-json --enum --dedupe-enums --output ./src/analytics/schema.ts"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.200",
+    "openapi-typescript": "^7.4.2",
+    "vite": "4.5.2",
+    "vite-plugin-banner": "^0.7.1",
+    "vite-plugin-dts": "^3.7.3",
+    "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "0.34.0"
+  }
+}
