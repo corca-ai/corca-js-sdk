@@ -512,6 +512,8 @@ export interface components {
              * @example t-shirt
              */
             query: string;
+            /** @description The suggested search query when typo ocurred. */
+            suggestedQuery?: string;
             /**
              * @description Whether the search query found any results.
              * @example true
@@ -705,8 +707,8 @@ export interface components {
              */
             amount: number;
             /**
-             * @description 스토어 측에서 사용하는 주문 ID, 성과 집계의 정확성과 단순 분석 및 디버깅을 위해 받는 데이터입니다. 원치 않는 경우 값을 채워넣지 않아도 됩니다.
-             * @example a13mva5
+             * @description 각 결제를 구별할 수 있는 고유한 주문 ID | 혹시 모를 구매 데이터 수집의 중복을 제거하는 용도로 사용되며, 스토어에서 사용중인 주문 ID를 넣으면 됩니다.
+             * @example 20210520-0001
              */
             orderId?: string;
         };

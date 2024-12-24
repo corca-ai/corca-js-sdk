@@ -1,5 +1,3 @@
-import { type paths } from './schema';
-
 import {
   CorcaDataAnalyticsParams,
   CorcaDataAnalyticsOnPageViewParams,
@@ -8,46 +6,14 @@ import {
   CorcaDataAnalyticsOnAddToCartParams,
   CorcaDataAnalyticsOnPurchaseParams,
 } from './analytics.interface';
-import { CorcaDataCore } from '../core';
-import { PACKAGE_VERSION } from '../version';
-import axios from 'axios';
+import { CorcaHttpPost } from '../corca-http-post';
 
-const sdkVersion = `js ${PACKAGE_VERSION}`;
-
-export class CorcaDataAnalytics {
-  private core: CorcaDataCore;
-  private baseURL: string;
-
+export class CorcaDataAnalytics extends CorcaHttpPost {
   constructor(params: CorcaDataAnalyticsParams) {
-    this.core = params.core;
-    this.baseURL = params.receiverEndpoint || 'https://receiver.corca.dev';
-  }
-
-  commonParams() {
-    return {
-      ...this.core.getSessionDto(),
-      sdkVersion,
-      userAgent:
-        typeof navigator !== 'undefined' && navigator.userAgent
-          ? navigator.userAgent
-          : '',
-    };
-  }
-
-  async post(
-    path: keyof paths,
-    params:
-      | CorcaDataAnalyticsOnPageViewParams
-      | CorcaDataAnalyticsOnImpressionParams
-      | CorcaDataAnalyticsOnClickParams
-      | CorcaDataAnalyticsOnAddToCartParams
-      | CorcaDataAnalyticsOnPurchaseParams
-  ) {
-    await axios.post(
-      path,
-      { ...this.commonParams(), ...params },
-      { baseURL: this.baseURL }
-    );
+    super({
+      core: params.core,
+      baseURL: params.receiverEndpoint || 'https://receiver.corca.dev',
+    });
   }
 
   async onPageView(params: CorcaDataAnalyticsOnPageViewParams) {

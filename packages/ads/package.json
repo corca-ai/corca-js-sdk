@@ -1,6 +1,6 @@
 {
   "name": "@corca-ai/ads",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Corca <contact@corca.ai>",
   "description": "",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
     "start:dev": "vite build --watch",
     "build": "vite build",
     "prepare": "pnpm build",
-    "openapi": "pnpm openapi-typescript https://receiver.corca.dev/api-json --enum --dedupe-enums --output ./src/analytics/schema.ts"
+    "openapi": "pnpm openapi-typescript https://receiver.corca.dev/api-json --enum --dedupe-enums --output ./src/analytics/schema.ts && pnpm openapi-typescript https://api.ads.corca.dev/api-json --enum --dedupe-enums --output ./src/advertisements/schema.ts"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.200",

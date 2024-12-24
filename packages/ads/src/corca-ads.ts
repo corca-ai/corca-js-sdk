@@ -1,11 +1,15 @@
 import {
+  CorcaDataAnalytics,
   CorcaDataAnalyticsOnPageViewParams,
   CorcaDataAnalyticsOnAddToCartParams,
   CorcaDataAnalyticsOnPurchaseParams,
   CorcaDataAnalyticsOnClickParams,
   CorcaDataAnalyticsOnImpressionParams,
 } from './analytics';
-import { CorcaDataAnalytics } from './analytics';
+import {
+  CorcaAdvertisements,
+  CorcaAdvertisementsProductsParams,
+} from './advertisements';
 import { CorcaDataCore } from './core';
 import { ImpressionObserver } from './impression-observer';
 
@@ -16,10 +20,12 @@ export type CorcaAdsParams = {
   deviceId?: string;
   sessionId?: string;
   receiverEndpoint?: string;
+  apiEndpoint?: string;
 };
 
 export type CorcaAdsConfig = CorcaAdsParams & {
   receiverEndpoint: string;
+  apiEndpoint: string;
 };
 
 export type CorcaDataObserveImpressionParams = {
@@ -33,10 +39,12 @@ export class CorcaAds {
   protected readonly config: CorcaAdsConfig;
   protected core: CorcaDataCore;
   protected analytics: CorcaDataAnalytics;
+  protected advertisements: CorcaAdvertisements;
 
   constructor(config: CorcaAdsParams) {
     this.config = {
       receiverEndpoint: 'https://receiver.corca.dev',
+      apiEndpoint: 'https://api.ads.corca.dev',
       ...config,
     };
     this.core = new CorcaDataCore({
@@ -50,6 +58,11 @@ export class CorcaAds {
     this.analytics = new CorcaDataAnalytics({
       core: this.core,
       receiverEndpoint: this.config.receiverEndpoint,
+    });
+
+    this.advertisements = new CorcaAdvertisements({
+      core: this.core,
+      apiEndpoint: this.config.apiEndpoint,
     });
   }
 
@@ -103,5 +116,9 @@ export class CorcaAds {
       observer.addImpressionListener(params.element, params.onImpression);
     }
     return observer.observe(params.element);
+  }
+
+  public fetchAdsProducts(params: CorcaAdvertisementsProductsParams) {
+    return this.advertisements.products(params);
   }
 }
