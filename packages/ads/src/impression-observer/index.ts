@@ -1,2 +1,2 @@
-export { CorcaDataImpressionObserver } from './impression-observer';
-export { CorcaDataImpressionObserverParams } from './impression-observer.interface';
+export { ImpressionObserver } from './impression-observer';
+export { ImpressionObserverParams } from './impression-observer.interface';

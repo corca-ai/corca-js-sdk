@@ -1,9 +1,9 @@
-import { CorcaDataImpressionObserverParams } from './impression-observer.interface';
+import { ImpressionObserverParams } from './impression-observer.interface';
 
 const INTERSECTION_THRESHOLD = 0.5;
 const INTERSECTION_TIMER = 1000;
 
-export class CorcaDataImpressionObserver {
+export class ImpressionObserver {
   static IMPRESSION_EVENT = 'impression';
   private filter?: (element: Element) => boolean;
   private once?: boolean;
@@ -14,7 +14,7 @@ export class CorcaDataImpressionObserver {
   private isIntersected: boolean = false;
   private isMutated: boolean = false;
 
-  constructor({ filter, once }: CorcaDataImpressionObserverParams = {}) {
+  constructor({ filter, once }: ImpressionObserverParams = {}) {
     this.filter = filter;
     this.once = once;
   }
@@ -77,7 +77,7 @@ export class CorcaDataImpressionObserver {
   public observe(element: Element) {
     return this.observeWithIntersectionObserver(element, (element: Element) => {
       element.dispatchEvent(
-        new CustomEvent(CorcaDataImpressionObserver.IMPRESSION_EVENT, {
+        new CustomEvent(ImpressionObserver.IMPRESSION_EVENT, {
           bubbles: true,
         })
       );
@@ -96,9 +96,6 @@ export class CorcaDataImpressionObserver {
     element: Element,
     listener: (event: Event) => void
   ) {
-    element.addEventListener(
-      CorcaDataImpressionObserver.IMPRESSION_EVENT,
-      listener
-    );
+    element.addEventListener(ImpressionObserver.IMPRESSION_EVENT, listener);
   }
 }

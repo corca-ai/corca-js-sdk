@@ -7,6 +7,7 @@ import {
 } from './analytics';
 import { CorcaDataAnalytics } from './analytics';
 import { CorcaDataCore } from './core';
+import { ImpressionObserver } from './impression-observer';
 
 export type CorcaAdsParams = {
   storeId: string;
@@ -86,5 +87,21 @@ export class CorcaAds {
 
   public onPurchase(params: CorcaDataAnalyticsOnPurchaseParams) {
     return this.analytics.onPurchase(params);
+  }
+
+  public onImpression(logOptions: CorcaDataAnalyticsOnImpressionParams) {
+    return this.analytics.onImpression(logOptions);
+  }
+
+  public onClick(logOptions: CorcaDataAnalyticsOnClickParams) {
+    return this.analytics.onClick(logOptions);
+  }
+
+  public observeImpression(params: CorcaDataObserveImpressionParams) {
+    const observer = new ImpressionObserver({ filter: params.filter });
+    if (params.onImpression) {
+      observer.addImpressionListener(params.element, params.onImpression);
+    }
+    return observer.observe(params.element);
   }
 }
