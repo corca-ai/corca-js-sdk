@@ -1,6 +1,6 @@
 {
   "name": "@corca-ai/data-core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Corca <contact@corca.ai>",
   "description": "",
   "main": "dist/index.js",

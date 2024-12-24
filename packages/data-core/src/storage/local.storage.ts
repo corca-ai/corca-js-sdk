@@ -2,21 +2,14 @@ import { LocalStorageParams, Storage } from './storage.interface';
 
 export class LocalStorage implements Storage<string> {
   private key: string = '';
-  private newKey: string = '';
 
   constructor(config: LocalStorageParams) {
     const { key } = config;
     this.key = key;
-    if (this.key.startsWith('adcio-')) {
-      this.newKey = this.key.replace('adcio-', 'corca-');
-    }
   }
 
   set(id: string): void {
     if (!localStorage) return;
-    if (this.newKey) {
-      localStorage.setItem(this.newKey, id);
-    }
     localStorage.setItem(this.key, id);
   }
 

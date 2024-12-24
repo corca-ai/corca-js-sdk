@@ -1,4 +1,3 @@
-// Adcio
 export { CorcaData } from './corca-data';
 export type * from './corca-data.interface';
 

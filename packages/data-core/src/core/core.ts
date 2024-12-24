@@ -31,11 +31,11 @@ export class CorcaDataCore {
       });
     } else {
       this.deviceId = createStorage({
-        local: { key: `adcio-device-${storeId}` }, // TODO adcio -> corca-data
+        local: { key: `corca-device-${storeId}` },
       }).getOrSet();
       this.sessionStorage = createStorage({
         session: {
-          key: `adcio-session-${storeId}`, // TODO adcio -> corca-data
+          key: `corca-session-${storeId}`,
           expiration: 30 * 60 * 1000, // GA default: 30 mins
         },
       });
