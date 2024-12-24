@@ -1,6 +1,6 @@
 {
-  "name": "@corca-ai/data-core",
-  "version": "0.1.2",
+  "name": "@corca-ai/ads",
+  "version": "0.0.1",
   "author": "Corca <contact@corca.ai>",
   "description": "",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.200",
     "openapi-typescript": "^7.4.2",
-    "vite": "4.5.2",
+    "vite": "4.5.5",
     "vite-plugin-banner": "^0.7.1",
     "vite-plugin-dts": "^3.7.3",
     "vite-tsconfig-paths": "^4.2.1",

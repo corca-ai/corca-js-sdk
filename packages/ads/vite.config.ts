@@ -30,7 +30,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, './src/index.ts'),
       formats: ['es', 'cjs', 'iife'],
-      name: 'corca.data.core',
+      name: 'corca.ads',
       fileName: 'index',
     },
   },
